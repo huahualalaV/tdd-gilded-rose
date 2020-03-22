@@ -10,7 +10,8 @@ package cn.xpbootcamp.gilded_rose;
 public class Product {
 	private Integer sellIn;
 	private Integer quality;
-	private Integer existDays;
+	private Integer existDays = 0;
+	private String name = "";
 
 	public Product() {
 	}
@@ -26,9 +27,25 @@ public class Product {
 		this.existDays = existDays;
 	}
 
+	public Product(Integer sellIn, Integer quality, Integer existDays, String name) {
+		this.sellIn = sellIn;
+		this.quality = quality;
+		this.existDays = existDays;
+		this.name = name;
+	}
+
 	public Integer getQuality() {
+		int specialFlag = 0;
+		if ("Aged Brie".equals(name)) {
+			specialFlag = 1;
+		}
+
 		if (existDays > sellIn) {
-			quality -= (existDays - sellIn) * 2;
+			if (specialFlag == 1) {
+				quality += existDays - sellIn;
+			} else {
+				quality -= (existDays - sellIn) * 2;
+			}
 		}
 		if (quality < 0) {
 			quality = 0;
