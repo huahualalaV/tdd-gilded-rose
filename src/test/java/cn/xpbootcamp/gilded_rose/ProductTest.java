@@ -16,4 +16,10 @@ class ProductTest {
 		Product product = new Product(10, 80);
 		assertEquals(Integer.valueOf(50), product.getQuality());
 	}
+
+	@Test
+	void should_declines_at_twice_the_rate_when_sell_in_is_over() {
+		Product product = new Product(10, 20, 13);
+		assertEquals(Integer.valueOf(14), product.getQuality());
+	}
 }
