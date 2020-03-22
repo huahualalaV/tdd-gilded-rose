@@ -8,14 +8,15 @@ package cn.xpbootcamp.gilded_rose;
  * @Version 1.0
  */
 public class Product {
+	public static final String AGED_BRIE = "Aged Brie";
+	public static final String SULFURAS = "Sulfuras";
+	public static final String BACKSTAGE_PASS = "Backstage pass";
+
 	private Integer sellIn;
 	private Integer quality;
 	private Integer existDays = 0;
 	private String name = "";
 	private Integer performanceIn = 0;
-
-	public Product() {
-	}
 
 	public Product(Integer sellIn, Integer quality) {
 		this.sellIn = sellIn;
@@ -44,17 +45,8 @@ public class Product {
 	}
 
 	public Integer getQuality() {
-		int specialFlag = 0;
-		if ("Aged Brie".equals(name)) {
-			specialFlag = 1;
-		} else if ("Sulfuras".equals(name)) {
-			specialFlag = 2;
-		} else if ("Backstage pass".equals(name)) {
-			specialFlag = 3;
-		}
-
-		if (specialFlag != 2) {
-			if (specialFlag == 3) {
+		if (!name.equals(SULFURAS)) {
+			if (name.equals(BACKSTAGE_PASS)) {
 				int distance = performanceIn - sellIn;
 				if (distance < 10 && distance > 5) {
 					quality += (10 - distance) * 2;
@@ -66,7 +58,7 @@ public class Product {
 					quality = 0;
 				}
 			} else if (existDays > sellIn) {
-				if (specialFlag == 1) {
+				if (name.equals(AGED_BRIE)) {
 					quality += existDays - sellIn;
 				} else {
 					quality -= (existDays - sellIn) * 2;
@@ -74,12 +66,16 @@ public class Product {
 			}
 		}
 
+		ensureQuality();
+		return quality;
+	}
+
+	private void ensureQuality() {
 		if (quality < 0) {
 			quality = 0;
 		}
 		if (quality > 50) {
 			quality = 50;
 		}
-		return quality;
 	}
 }
