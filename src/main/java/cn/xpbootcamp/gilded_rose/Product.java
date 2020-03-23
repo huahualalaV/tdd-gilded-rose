@@ -16,7 +16,6 @@ public class Product {
 	private Integer quality;
 	private Integer existedDays = 0;
 	private String name = "";
-	private Integer performanceIn = 0;
 
 	public Product(Integer sellIn, Integer quality) {
 		this.sellIn = sellIn;
@@ -36,25 +35,19 @@ public class Product {
 		this.name = name;
 	}
 
-	public Product(Integer sellIn, Integer quality, Integer existedDays, String name, Integer performanceIn) {
-		this.sellIn = sellIn;
-		this.quality = quality;
-		this.existedDays = existedDays;
-		this.name = name;
-		this.performanceIn = performanceIn;
-	}
-
 	public Integer getQuality() {
 		if (!name.equals(SULFURAS)) {
 			if (name.equals(BACKSTAGE_PASS)) {
-				int distance = performanceIn - sellIn;
-				if (distance < 10 && distance > 5) {
-					quality += (10 - distance) * 2;
+				int differenceValue = sellIn - existedDays;
+				if (differenceValue < 10 && differenceValue > 5) {
+					quality += sellIn - 10;
+					quality += (10 - differenceValue) * 2;
 				}
-				if (distance < 5 && distance > -1) {
-					quality += (5 - distance) * 3 + 10;
+				if (differenceValue < 5 && differenceValue > -1) {
+					quality += sellIn - 10;
+					quality += (5 - differenceValue) * 3 + 10;
 				}
-				if (distance < 0) {
+				if (differenceValue < 0) {
 					quality = 0;
 				}
 			} else if (existedDays > sellIn) {
