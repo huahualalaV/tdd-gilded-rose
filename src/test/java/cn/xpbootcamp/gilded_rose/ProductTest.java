@@ -25,10 +25,10 @@ class ProductTest {
 	}
 
 	@Test
-	void should_increase_quality_when_sellIn_is_over_and_product_name_is_aged_brie() {
+	void should_increase_quality_when_product_name_is_aged_brie() {
 		int initQuality = 20;
 		Product agedBrie = new Product(10, initQuality, 13, "Aged Brie");
-		assertTrue(agedBrie.getQuality() - initQuality > 0);
+		assertEquals(Integer.valueOf(33), agedBrie.getQuality());
 	}
 
 	@Test

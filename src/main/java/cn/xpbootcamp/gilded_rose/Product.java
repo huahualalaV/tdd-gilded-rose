@@ -59,7 +59,7 @@ public class Product {
 				}
 			} else if (existedDays > sellIn) {
 				if (name.equals(AGED_BRIE)) {
-					quality += existedDays - sellIn;
+					quality += existedDays;
 				} else {
 					quality -= sellIn;
 					quality -= (existedDays - sellIn) * 2;
