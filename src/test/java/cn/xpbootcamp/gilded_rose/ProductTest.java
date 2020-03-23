@@ -44,13 +44,13 @@ class ProductTest {
 	}
 
 	@Test
-	void should_increase_3_quality_when_performance_in_grreater_than_5_and_product_name_is_backstage_pass() {
-		Product backstagePass = new Product(30, 10, 28, "Backstage pass");
-		assertEquals(Integer.valueOf(49), backstagePass.getQuality());
+	void should_add_3_quality_when_performance_in_5_days_and_product_name_is_backstage_pass() {
+		Product backstagePass = new Product(6, 10, 3, "Backstage pass");
+		assertEquals(Integer.valueOf(18), backstagePass.getQuality());
 	}
 
 	@Test
-	void should_return_0_when_performance_in_is_over_sell_in_and_product_name_is_backstage_pass() {
+	void should_return_0_when_exist_days_more_than_sell_in_and_product_name_is_backstage_pass() {
 		Product backstagePass = new Product(20, 10, 21, "Backstage pass");
 		assertEquals(Integer.valueOf(0), backstagePass.getQuality());
 	}

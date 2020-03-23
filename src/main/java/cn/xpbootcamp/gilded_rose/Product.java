@@ -38,25 +38,38 @@ public class Product {
 	public Integer getQuality() {
 		if (!name.equals(SULFURAS)) {
 			if (name.equals(BACKSTAGE_PASS)) {
-				int differenceValue = sellIn - existedDays;
-				if (differenceValue < 10 && differenceValue > 5) {
-					quality += sellIn - 10;
-					quality += (10 - differenceValue) * 2;
-				}
-				if (differenceValue < 5 && differenceValue > -1) {
-					quality += sellIn - 10;
-					quality += (5 - differenceValue) * 3 + 10;
-				}
-				if (differenceValue < 0) {
+				if (existedDays <= sellIn) {
+					if (sellIn >= 10) {
+						if (existedDays < sellIn - 10) {
+							quality += existedDays;
+						} else if (existedDays < sellIn - 5) {
+							quality += sellIn - 10;
+							quality += (10 + existedDays - sellIn) * 2;
+						} else {
+							quality += sellIn - 10;
+							quality += 5 * 2;
+							quality += (5 + existedDays - sellIn) * 3;
+						}
+					} else if (sellIn >= 5) {
+						if (existedDays <= sellIn -5) {
+							quality += existedDays * 2;
+						} else {
+							quality += (sellIn - 5) * 2;
+							quality += (5 + existedDays -sellIn) * 3;
+						}
+					} else {
+						quality += existedDays * 3;
+					}
+				} else {
 					quality = 0;
 				}
+			} else if (name.equals(AGED_BRIE)) {
+				quality += existedDays;
 			} else if (existedDays > sellIn) {
-				if (name.equals(AGED_BRIE)) {
-					quality += existedDays;
-				} else {
-					quality -= sellIn;
-					quality -= (existedDays - sellIn) * 2;
-				}
+				quality -= sellIn;
+				quality -= (existedDays - sellIn) * 2;
+			} else {
+				quality -= existedDays;
 			}
 		}
 
