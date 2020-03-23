@@ -14,7 +14,7 @@ public class Product {
 
 	private Integer sellIn;
 	private Integer quality;
-	private Integer existDays = 0;
+	private Integer existedDays = 0;
 	private String name = "";
 	private Integer performanceIn = 0;
 
@@ -23,23 +23,23 @@ public class Product {
 		this.quality = quality;
 	}
 
-	public Product(Integer sellIn, Integer quality, Integer existDays) {
+	public Product(Integer sellIn, Integer quality, Integer existedDays) {
 		this.sellIn = sellIn;
 		this.quality = quality;
-		this.existDays = existDays;
+		this.existedDays = existedDays;
 	}
 
-	public Product(Integer sellIn, Integer quality, Integer existDays, String name) {
+	public Product(Integer sellIn, Integer quality, Integer existedDays, String name) {
 		this.sellIn = sellIn;
 		this.quality = quality;
-		this.existDays = existDays;
+		this.existedDays = existedDays;
 		this.name = name;
 	}
 
-	public Product(Integer sellIn, Integer quality, Integer existDays, String name, Integer performanceIn) {
+	public Product(Integer sellIn, Integer quality, Integer existedDays, String name, Integer performanceIn) {
 		this.sellIn = sellIn;
 		this.quality = quality;
-		this.existDays = existDays;
+		this.existedDays = existedDays;
 		this.name = name;
 		this.performanceIn = performanceIn;
 	}
@@ -57,11 +57,12 @@ public class Product {
 				if (distance < 0) {
 					quality = 0;
 				}
-			} else if (existDays > sellIn) {
+			} else if (existedDays > sellIn) {
 				if (name.equals(AGED_BRIE)) {
-					quality += existDays - sellIn;
+					quality += existedDays - sellIn;
 				} else {
-					quality -= (existDays - sellIn) * 2;
+					quality -= sellIn;
+					quality -= (existedDays - sellIn) * 2;
 				}
 			}
 		}

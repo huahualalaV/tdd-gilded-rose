@@ -19,9 +19,9 @@ class ProductTest {
 	}
 
 	@Test
-	void should_declines_at_twice_the_rate_when_sell_in_is_over() {
+	void should_decline_at_twice_the_rate_when_exist_days_more_than_sell_in() {
 		Product product = new Product(10, 20, 13);
-		assertEquals(Integer.valueOf(14), product.getQuality());
+		assertEquals(Integer.valueOf(4), product.getQuality());
 	}
 
 	@Test
